@@ -1,0 +1,9 @@
+{
+  "name": "ng-tis-certificate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "On-demand NICEGENE TIS certificate application",
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}
