@@ -1,13 +1,17 @@
-const { verifyToken } = require("./_token");
+const { verifyToken } = require("../lib/token");
 
 async function lookupCertificate(certificateNumber) {
   const url = process.env.CERTIFICATE_LOOKUP_URL;
+  const secret = process.env.CERTIFICATE_LOOKUP_SECRET;
+
   if (!url) throw new Error("CERTIFICATE_LOOKUP_URL is not configured");
+  if (!secret) throw new Error("CERTIFICATE_LOOKUP_SECRET is not configured");
 
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "x-certificate-secret": secret
     },
     body: JSON.stringify({
       certificate_number: certificateNumber,
@@ -38,7 +42,7 @@ module.exports = async function handler(req, res) {
 
     const result = await lookupCertificate(payload.certificate_number);
 
-    if (!result?.success || !result.certificate) {
+    if (!result?.success || !result.certificate || result.certificate.approved !== true) {
       return res.status(404).json({
         success: false,
         error: "Certificate is not currently available"
