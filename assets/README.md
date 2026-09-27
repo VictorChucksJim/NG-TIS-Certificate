@@ -1,7 +1,8 @@
-Place the approved high-resolution certificate template here as:
+Place the approved certificate template in this folder.
 
-certificate-template.png
+Current production template:
+MAIN CERTIFICATE DESIGN FOR NTIS 002 V3.jpg
 
-The application currently references /assets/certificate-template.png.
+The application references this exact asset from /js/config.js.
 
-Do not replace the template with a screenshot unless the original production asset is unavailable.
+Do not replace the approved template with a screenshot or redesign it. Dynamic fields are rendered on top of the template at runtime.
