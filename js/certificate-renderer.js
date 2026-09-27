@@ -52,8 +52,8 @@ const LAYOUT = {
     centerX: 768,
     baselineY: 604,
     maxWidth: 610,
-    fontSize: 78,
-    minFontSize: 48
+    fontSize: 68,
+    minFontSize: 42
   },
   certificateNumber: {
     rightX: 1460,
@@ -61,9 +61,9 @@ const LAYOUT = {
     valueY: 99
   },
   qr: {
-    x: 742,
+    x: 770,
     y: 835,
-    size: 205
+    size: 148
   }
 };
 
