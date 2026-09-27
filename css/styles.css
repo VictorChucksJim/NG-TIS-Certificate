@@ -1,0 +1,31 @@
+*{box-sizing:border-box}
+:root{font-family:Inter,Arial,sans-serif;color:#15275c;background:#f4f7fb}
+body{margin:0}
+.page{max-width:1180px;margin:auto;padding:24px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:34px}
+.brand-mark{width:44px;height:44px;border-radius:10px;background:#183c76;color:#fff;display:grid;place-items:center;font-size:9px;font-weight:800}
+.brand span{display:block;color:#64708a;font-size:13px;margin-top:3px}
+.panel,.certificate-frame,.correction,.success{background:#fff;border:1px solid #e3e8f0;border-radius:18px;box-shadow:0 12px 40px rgba(18,42,84,.08)}
+.panel{padding:48px;text-align:center}
+.error{border-top:4px solid #c62828}
+.intro{max-width:760px;margin:0 auto 24px;text-align:center}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:#526b9d}
+h1{font-size:clamp(30px,5vw,52px);margin:10px 0}
+h2{margin:0 0 10px}
+.meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
+.meta-grid>div{background:#fff;border:1px solid #e3e8f0;border-radius:14px;padding:16px}
+.meta-grid span{display:block;color:#77839b;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.certificate-frame{padding:10px;overflow:auto}
+.certificate-frame canvas{display:block;width:100%;height:auto}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0 30px}
+.button{border:0;border-radius:10px;padding:14px 20px;font-weight:700;text-decoration:none;cursor:pointer;display:inline-block}
+.primary{background:#173d78;color:#fff}
+.secondary{background:#eef2f8;color:#173d78}
+.whatsapp{background:#1b9b54;color:#fff}
+.correction,.success{padding:26px;margin-top:18px}
+.correction{text-align:center}
+.text-link{color:#173d78;font-weight:700}
+.success{background:linear-gradient(135deg,#fff,#f3f8ff);text-align:center}
+.socials{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:20px}
+.socials a{color:#173d78;font-weight:700;text-decoration:none}
+@media(max-width:700px){.page{padding:16px}.meta-grid{grid-template-columns:1fr}.panel{padding:30px 20px}}
