@@ -110,9 +110,10 @@ async function renderCertificate(certificate) {
   ctx.fillText(certificateNumber, LAYOUT.certificateNumber.rightX, LAYOUT.certificateNumber.valueY);
 
   // QR code fills the existing white square between the two signatures.
-  const verificationUrl =
-    certificate.verification_url ||
-    `${window.NG_CERT_CONFIG.verificationBaseUrl}/${encodeURIComponent(certificateNumber)}`;
+  const verificationUrl = String(certificate.verification_url || "").trim();
+  if (!verificationUrl) {
+    throw new Error("Verification URL is missing.");
+  }
 
   const qrImage = await createQrImage(verificationUrl);
 
