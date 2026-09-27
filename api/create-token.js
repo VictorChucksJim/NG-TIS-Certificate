@@ -1,4 +1,4 @@
-const { createToken } = require("./_token");
+const { createToken } = require("../lib/token");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
