@@ -3,7 +3,7 @@
 body{margin:0}
 .page{max-width:1180px;margin:auto;padding:24px}
 .brand{display:flex;align-items:center;gap:12px;margin-bottom:34px}
-.brand-mark{width:44px;height:44px;border-radius:10px;background:#183c76;color:#fff;display:grid;place-items:center;font-size:9px;font-weight:800}
+.brand-logo{width:52px;height:52px;border-radius:12px;object-fit:cover;display:block}
 .brand span{display:block;color:#64708a;font-size:13px;margin-top:3px}
 .panel,.certificate-frame,.correction,.success{background:#fff;border:1px solid #e3e8f0;border-radius:18px;box-shadow:0 12px 40px rgba(18,42,84,.08)}
 .panel{padding:48px;text-align:center}
