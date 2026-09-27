@@ -5,5 +5,8 @@
   "description": "On-demand NICEGENE TIS certificate application",
   "dependencies": {
     "qrcode": "^1.5.4"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
