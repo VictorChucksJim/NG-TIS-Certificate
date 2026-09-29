@@ -36,21 +36,21 @@ async function createQrImage(value) {
  */
 const LAYOUT = {
   name: {
-    centerX: 768,
-    baselineY: 604,
-    maxWidth: 610,
-    fontSize: 68,
-    minFontSize: 42
+    centerX: 1024,
+    baselineY: 600,
+    maxWidth: 900,
+    fontSize: 82,
+    minFontSize: 52
   },
   certificateNumber: {
-    rightX: 1460,
-    labelY: 67,
-    valueY: 99
+    rightX: 1880,
+    labelY: 68,
+    valueY: 102
   },
   qr: {
-    x: 770,
-    y: 835,
-    size: 148
+    x: 1060,
+    y: 1185,
+    size: 230
   }
 };
 
@@ -91,9 +91,9 @@ async function renderCertificate(certificate) {
   ctx.textAlign = "right";
   ctx.textBaseline = "alphabetic";
   ctx.fillStyle = "#122A68";
-  ctx.font = '20px "Poppins", Arial, sans-serif';
+  ctx.font = '24px "Poppins", Arial, sans-serif';
   ctx.fillText("Certificate No:", LAYOUT.certificateNumber.rightX, LAYOUT.certificateNumber.labelY);
-  ctx.font = '700 24px "Poppins", Arial, sans-serif';
+  ctx.font = '700 28px "Poppins", Arial, sans-serif';
   ctx.fillText(certificateNumber, LAYOUT.certificateNumber.rightX, LAYOUT.certificateNumber.valueY);
 
   // QR code fills the existing white square between the two signatures.
