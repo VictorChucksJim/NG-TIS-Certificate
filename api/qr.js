@@ -27,7 +27,7 @@ module.exports = async function handler(req, res) {
     });
 
     res.setHeader("Content-Type", "image/png");
-    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
     return res.status(200).send(buffer);
   } catch (error) {
     console.error(error);
