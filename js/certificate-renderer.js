@@ -25,7 +25,7 @@ function fitHandwrittenName(ctx, text, maxWidth, baseSize, minSize) {
 }
 
 async function createQrImage(value) {
-  const qrUrl = `/api/qr?value=${encodeURIComponent(value)}`;
+  const qrUrl = `/api/qr?value=${encodeURIComponent(value)}&v=2`;
   return loadImage(qrUrl);
 }
 
