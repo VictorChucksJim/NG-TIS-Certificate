@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Verify NICEGENE Certificate</title>
+  <meta name="description" content="Verify a NICEGENE Tech Insight Series certificate.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f4f7fb; color: #122a68; font-family: Poppins, Arial, sans-serif; }
+    .page { max-width: 960px; margin: 0 auto; padding: 28px 22px 60px; }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    .brand-logo { width: 52px; height: 52px; object-fit: contain; }
+    .brand strong { display: block; font-size: 18px; letter-spacing: .2px; }
+    .brand span { display: block; font-size: 12px; margin-top: 2px; }
+    .panel { background: #fff; border-top: 4px solid #d3262d; border-radius: 14px; padding: 42px 34px; box-shadow: 0 12px 36px rgba(18,42,104,.08); }
+    h1 { margin: 0 0 10px; font-size: clamp(28px, 5vw, 46px); }
+    .lead { color: #42547b; margin: 0 0 28px; }
+    .status { display: inline-flex; padding: 8px 14px; border-radius: 999px; background: #e8f7ed; color: #176b35; font-weight: 700; font-size: 13px; margin-bottom: 22px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; margin-top: 26px; }
+    .item { padding: 18px; border: 1px solid #e2e8f2; border-radius: 10px; }
+    .item span { display:block; color:#6a7894; font-size:12px; margin-bottom:6px; }
+    .item strong { display:block; font-size:16px; word-break:break-word; }
+    .message { margin-top: 22px; padding: 18px; background: #f5f7fb; border-radius: 10px; color:#34466c; line-height:1.6; }
+    .error { border-top-color: #d3262d; }
+    .button { display:inline-block; margin-top:24px; padding:12px 18px; border-radius:9px; background:#122a68; color:#fff; text-decoration:none; font-weight:600; }
+    .small { margin-top:26px; color:#6a7894; font-size:12px; }
+    @media (max-width: 640px) { .grid { grid-template-columns:1fr; } .panel { padding:30px 22px; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="brand">
+      <img class="brand-logo" src="/assets/NG%20logo.png" alt="NICEGENE Technologies">
+      <div><strong>NICEGENE TECHNOLOGIES</strong><span>Tech Insight Series</span></div>
+    </header>
+
+    <section id="loading" class="panel">
+      <h1>Verifying certificate…</h1>
+      <p class="lead">Please wait while we check the certificate record.</p>
+    </section>
+
+    <section id="result" class="panel" hidden>
+      <div class="status">✓ Certificate verified</div>
+      <h1>Certificate verification</h1>
+      <p class="lead">This certificate record was verified against NICEGENE's programme records.</p>
+      <div class="grid">
+        <div class="item"><span>Participant</span><strong id="participant"></strong></div>
+        <div class="item"><span>Certificate Number</span><strong id="certificate-number"></strong></div>
+        <div class="item"><span>Participant ID</span><strong id="participant-id"></strong></div>
+        <div class="item"><span>Issue Date</span><strong id="issue-date"></strong></div>
+      </div>
+      <div class="message" id="message"></div>
+      <p class="small">Verification provided by NICEGENE Technologies.</p>
+    </section>
+
+    <section id="error" class="panel error" hidden>
+      <h1>Certificate not verified</h1>
+      <p class="lead" id="error-message">We could not verify this certificate.</p>
+      <a class="button" href="https://wa.me/2348116115825" target="_blank" rel="noopener">Contact NICEGENE</a>
+    </section>
+  </main>
+
+  <script>
+    async function boot() {
+      const certificateNumber = new URLSearchParams(window.location.search).get("certificate");
+      const loading = document.getElementById("loading");
+      const result = document.getElementById("result");
+      const error = document.getElementById("error");
+
+      if (!certificateNumber) {
+        loading.hidden = true;
+        error.hidden = false;
+        document.getElementById("error-message").textContent = "No certificate number was provided.";
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/public-verify?certificate=" + encodeURIComponent(certificateNumber));
+        const data = await response.json();
+
+        if (!response.ok || !data.success || !data.certificate) {
+          throw new Error(data.error || "Certificate could not be verified.");
+        }
+
+        const c = data.certificate;
+        document.getElementById("participant").textContent = c.certificate_display_name || "";
+        document.getElementById("certificate-number").textContent = c.certificate_number || "";
+        document.getElementById("participant-id").textContent = c.participant_id || "";
+        document.getElementById("issue-date").textContent = c.issue_date || "";
+        document.getElementById("message").textContent = c.verification_message || "This certificate has been verified by NICEGENE Technologies.";
+
+        loading.hidden = true;
+        result.hidden = false;
+      } catch (e) {
+        loading.hidden = true;
+        error.hidden = false;
+        document.getElementById("error-message").textContent = e.message || "Certificate could not be verified.";
+      }
+    }
+    boot();
+  </script>
+</body>
+</html>
