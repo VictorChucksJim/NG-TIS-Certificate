@@ -36,21 +36,21 @@ async function createQrImage(value) {
  */
 const LAYOUT = {
   name: {
-    centerX: 1024,
-    baselineY: 600,
+    centerX: 1160,
+    baselineY: 870,
     maxWidth: 900,
-    fontSize: 82,
+    fontSize: 90,
     minFontSize: 52
   },
   certificateNumber: {
     rightX: 1880,
-    labelY: 68,
-    valueY: 102
+    labelY: 256,
+    valueY: 294
   },
   qr: {
-    x: 1060,
-    y: 1185,
-    size: 230
+    x: 1048,
+    y: 1148,
+    size: 293
   }
 };
 
