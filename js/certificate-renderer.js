@@ -25,21 +25,8 @@ function fitHandwrittenName(ctx, text, maxWidth, baseSize, minSize) {
 }
 
 async function createQrImage(value) {
-  if (!window.QRCode) {
-    throw new Error("QR generator is unavailable.");
-  }
-
-  const dataUrl = await QRCode.toDataURL(value, {
-    errorCorrectionLevel: "H",
-    margin: 1,
-    width: 300,
-    color: {
-      dark: "#000000",
-      light: "#ffffff"
-    }
-  });
-
-  return loadImage(dataUrl);
+  const qrUrl = `/api/qr?value=${encodeURIComponent(value)}`;
+  return loadImage(qrUrl);
 }
 
 /*
