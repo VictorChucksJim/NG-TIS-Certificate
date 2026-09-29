@@ -25,7 +25,7 @@ module.exports = async function handler(req, res) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-certificate-secret": secret
+        "x-make-apikey": secret
       },
       body: JSON.stringify({
         certificate_number: certificateNumber,
