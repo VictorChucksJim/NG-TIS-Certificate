@@ -10,7 +10,7 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ success: false, error: "certificate_number is required" });
     }
 
-    if (!/^NG-TIS02-CERT-\\d{4,}$/.test(certificateNumber)) {
+    if (!/^NG-TIS02-CERT-\d{4,}$/.test(certificateNumber)) {
       return res.status(400).json({ success: false, error: "Invalid certificate number" });
     }
 
