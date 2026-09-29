@@ -11,7 +11,7 @@ async function lookupCertificate(certificateNumber) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-certificate-secret": secret
+      "x-make-apikey": secret
     },
     body: JSON.stringify({
       certificate_number: certificateNumber,
