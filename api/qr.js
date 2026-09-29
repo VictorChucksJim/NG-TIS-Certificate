@@ -18,7 +18,7 @@ module.exports = async function handler(req, res) {
   try {
     const buffer = await QRCode.toBuffer(value, {
       errorCorrectionLevel: "H",
-      margin: 1,
+      margin: 0,
       width: 300,
       color: {
         dark: "#000000",
