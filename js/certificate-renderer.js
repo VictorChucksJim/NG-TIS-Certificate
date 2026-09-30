@@ -25,7 +25,7 @@ function fitHandwrittenName(ctx, text, maxWidth, baseSize, minSize) {
 }
 
 async function createQrImage(value) {
-  const qrUrl = `/api/qr?value=${encodeURIComponent(value)}&v=2`;
+  const qrUrl = `/api/qr?value=${encodeURIComponent(value)}&v=3`;
   return loadImage(qrUrl);
 }
 
@@ -47,10 +47,15 @@ const LAYOUT = {
     labelY: 256,
     valueY: 294
   },
-  qr: {
+  // The white QR panel in the certificate template.
+  qrArea: {
     x: 1048,
     y: 1148,
     size: 293
+  },
+  // Render the QR as a smaller square, then centre that square inside the panel.
+  qr: {
+    size: 160
   }
 };
 
@@ -104,10 +109,13 @@ async function renderCertificate(certificate) {
 
   const qrImage = await createQrImage(verificationUrl);
 
+  const qrX = LAYOUT.qrArea.x + (LAYOUT.qrArea.size - LAYOUT.qr.size) / 2;
+  const qrY = LAYOUT.qrArea.y + (LAYOUT.qrArea.size - LAYOUT.qr.size) / 2;
+
   ctx.drawImage(
     qrImage,
-    LAYOUT.qr.x,
-    LAYOUT.qr.y,
+    qrX,
+    qrY,
     LAYOUT.qr.size,
     LAYOUT.qr.size
   );
