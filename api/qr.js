@@ -1,7 +1,7 @@
 const QRCode = require("qrcode");
 const { PNG } = require("pngjs");
 
-const OUTPUT_SIZE = 293;
+const OUTPUT_SIZE = 160;
 const QUIET_ZONE_MODULES = 4;
 
 module.exports = async function handler(req, res) {
