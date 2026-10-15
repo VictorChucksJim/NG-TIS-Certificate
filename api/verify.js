@@ -10,10 +10,10 @@ async function lookupCertificate(certificateNumber) {
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      "x-make-apikey": secret
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
+      secret,
       certificate_number: certificateNumber,
       source: "NG-TIS-Certificate"
     })
